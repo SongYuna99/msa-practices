@@ -4,8 +4,7 @@ spring:
       name: service-emaillist
    profiles:
       active: development
-
-            
+               
 ---
 # configuration: common
 spring:
@@ -19,7 +18,13 @@ spring:
 mybatis:
    config-location: classpath:mybatis/configuration.xml
 
-
+server:
+   port: 0
+   servlet:
+      context-path: /
+      encoding:
+         charset: UTF-8
+         enabled: true
 
 ---
 # configuration: development
@@ -34,7 +39,7 @@ spring:
                      
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://localhost:3306/webdb?charset=utf8
+      url: jdbc:mariadb://192.168.0.186:3307/webdb?charset=utf8
       username: webdb
       password: webdb
       hikari:
@@ -45,9 +50,7 @@ logging:
    pattern:
       console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
    level:
-      root: INFO
-
-           
+      root: INFO           
                             
 ---
 # configuration: production
@@ -58,7 +61,7 @@ spring:
 
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://115.71.238.205:3306/webdb?charset=utf8
+      url: jdbc:mariadb://192.168.0.186:3307/webdb?charset=utf8
       username: webdb
       password: webdb
       hikari:
@@ -83,4 +86,13 @@ logging:
                service:
                   emaillist:
                      exception: ERROR
+                     
+eureka:
+   instance:
+      preferIpAddress: true
+   client:
+      fetchRegistry: true
+      registerWithEureka: true
+      serviceUrl:
+         defaultZone: http://192.168.0.186:8761/eureka
                               
