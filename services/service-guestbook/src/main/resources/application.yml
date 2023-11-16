@@ -1,12 +1,12 @@
-# spring configuration
 spring:
    application:
-      name: service-emaillist
+      name: service-guestbook
    profiles:
       active: development
-               
+
+
 ---
-# configuration: common        
+# configuration: common
 mybatis:
    config-location: classpath:mybatis/configuration.xml
 
@@ -15,9 +15,10 @@ server:
    servlet:
       context-path: /
       encoding:
-         charset: UTF-8
+         charset: utf-8
          enabled: true
 
+         
 ---
 # configuration: development
 spring:
@@ -42,8 +43,17 @@ logging:
    pattern:
       console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
    level:
-      root: INFO           
-                            
+      root: INFO
+
+eureka:
+   instance:
+      preferIpAddress: true
+   client:
+      fetchRegistry: true
+      registerWithEureka: true
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka
+         
 ---
 # configuration: production
 spring:
@@ -76,9 +86,9 @@ logging:
          poscodx:
             msa:
                service:
-                  emaillist:
+                  guestbook:
                      exception: ERROR
-                     
+                              
 eureka:
    instance:
       preferIpAddress: true
@@ -87,4 +97,3 @@ eureka:
       registerWithEureka: true
       serviceUrl:
          defaultZone: http://192.168.0.186:8761/eureka
-                              

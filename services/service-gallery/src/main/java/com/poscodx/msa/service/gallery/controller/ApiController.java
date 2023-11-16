@@ -1,6 +1,4 @@
-package com.poscodx.mysite.controller;
-
-import java.util.Map;
+package com.poscodx.msa.service.gallery.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,43 +6,37 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.poscodx.mysite.dto.JsonResult;
-import com.poscodx.mysite.service.FileUploadService;
-import com.poscodx.mysite.service.GalleryService;
-import com.poscodx.mysite.vo.GalleryVo;
+import com.poscodx.msa.service.gallery.dto.JsonResult;
+import com.poscodx.msa.service.gallery.service.GalleryService;
+import com.poscodx.msa.service.gallery.vo.GalleryVo;
 
 @RestController
-@RequestMapping("/api/gallery")
-public class GalleryController {
-
+@RequestMapping("/")
+public class ApiController {
 	private final GalleryService galleryService;
-	private final FileUploadService FileUploadService;
 
-	public GalleryController(FileUploadService FileUploadService, GalleryService galleryService) {
-		this.FileUploadService = FileUploadService;
+	public ApiController(GalleryService galleryService) {
 		this.galleryService = galleryService;
 	}
 
-	@GetMapping("")
-	public ResponseEntity<JsonResult> index() {
+	@GetMapping
+	public ResponseEntity<JsonResult> get() {
 		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(galleryService.getGalleryImages()));
 	}
-
+	
 	@PostMapping
-	public ResponseEntity<JsonResult> upload(MultipartFile file, GalleryVo galleyVo) {
-		galleyVo.setImageUrl(FileUploadService.restoreImage(file, "gallery"));
+	public ResponseEntity<JsonResult> post(@RequestBody GalleryVo galleyVo) {
 		galleryService.addGalleryImage(galleyVo);
-
 		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(galleyVo));
 	}
-
-	@DeleteMapping(value = "/{no}")
+	
+	@DeleteMapping(value="/{no}")
 	public ResponseEntity<JsonResult> delete(@PathVariable("no") Long no) {
 		galleryService.deleteGalleryImage(no);
-		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(Map.of("no", no)));
+		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(no));
 	}
 }
