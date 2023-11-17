@@ -6,24 +6,24 @@ header {
     line-height: 70px;
     margin: 0;
     padding-left: 10px;
-    color: #79B30B;
+    color: #79b30b;
 
     a {
-      color: #79B30B;
+      color: #79b30b;
       text-decoration: none;
 
       &:hover {
-        color: #79B30B;
+        color: #79b30b;
         text-decoration: none;
       }
 
       &:visited {
-        color: #79B30B;
+        color: #79b30b;
         text-decoration: none;
       }
 
       &:active {
-        color: #79B30B;
+        color: #79b30b;
         text-decoration: none;
       }
     }
@@ -33,10 +33,11 @@ header {
     height: 20px;
     margin: 0 20px 10px 0;
 
-    strong, a {
+    strong,
+    a {
       display: block;
       float: right;
-      color: #4F4F4F;
+      color: #4f4f4f;
       font-weight: bold;
       margin-left: 10px;
       text-decoration: none;

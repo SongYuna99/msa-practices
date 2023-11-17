@@ -4,10 +4,11 @@
   background-color: #fff;
 
   h2 {
-    color: #5C5C5C;
+    color: #5c5c5c;
     text-align: left;
     margin-bottom: 10px;
-    background: url('../../../images/component/guestbook/guestbook.png') 0 0 no-repeat;
+    background: url("../../../images/component/guestbook/guestbook.png") 0 0
+      no-repeat;
     background-size: 35px;
     padding-left: 40px;
     height: 35px;
@@ -16,10 +17,11 @@
 }
 
 .DeleteForm {
-  padding: .5em;
+  padding: 0.5em;
   text-align: left;
 
-  label, input {
+  label,
+  input {
     display: block;
     margin: 5px;
   }
@@ -34,7 +36,7 @@
     text-align: center;
     color: red;
     font-weight: bold;
-    height:20px;
+    height: 20px;
     line-height: 20px;
   }
 }

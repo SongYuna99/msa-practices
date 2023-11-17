@@ -7,7 +7,8 @@
     height: 35px;
     line-height: 35px;
     float: left;
-    background: url('../../../images/component/gallery/gallery.png') 0 0 no-repeat;
+    background: url("../../../images/component/gallery/gallery.png") 0 0
+      no-repeat;
     background-size: 35px;
     margin-bottom: 10px;
   }
@@ -22,21 +23,20 @@
     border: 1px solid #2080d0;
     background-color: #e8ecf6;
     outline: none;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
-
 }
 
 .FormUpload {
   padding: 5px;
   text-align: left;
-  font-size: .75em;
+  font-size: 0.75em;
 
   label {
     font-size: 12px;
   }
 
-  input[type='text'] {
+  input[type="text"] {
     width: 310px;
     padding: 5px;
     outline: none;
