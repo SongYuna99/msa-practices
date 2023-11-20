@@ -41,7 +41,7 @@ module.exports = (env) => ({
         API_URL: JSON.stringify(
           process.env.NODE_ENV === "development"
             ? "http://localhost:8888"
-            : "http://192.168.0.172:8888"
+            : "http://192.168.0.186:8888"
         ),
       },
     }),

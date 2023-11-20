@@ -6,7 +6,7 @@ mysite09: frontend
 
     2)  라이브러리
         $ npm i react react-dom prop-types react-addons-update react-modal styled-component react-router react-router-dom
-
+        $ npm install --save-dev cross-env
 
 2.  설정
     1)  webpack.config.js
