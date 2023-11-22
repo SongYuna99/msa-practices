@@ -1,0 +1,71 @@
+spring:
+   application:
+      name: service-config-server
+   profiles:
+      active: native
+
+---
+# configuration: common       
+server:
+   port: 7777
+
+# encrypt.enabled: false면 주석처리
+#encrypt:
+#   key-store:
+#      alias: selfsigned
+#      location: classpath:keystore.jks
+#      password: password
+    
+    
+---
+# configuration: git
+spring:
+   config:
+      activate:
+         on-profile: git   
+   cloud:
+      config:
+         server:
+            encrypt.enabled: true
+            git:
+               uri: https://github.com/SongYuna99/msa-practice-config-repo.git
+               searchPaths: service-emaillist,
+                            service-storage,
+                            service-gallery,
+                            service-guestbook,
+                            service-gateway-server
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
+         max-file-size: 10MB
+         max-history: 10
+   file:
+      name: logs/${spring.application.name}.log
+   level:
+      root: WARN
+               
+
+---
+# configuration: native(file system)
+spring:
+   config:
+      activate:
+         on-profile: native   
+   cloud:
+     config:
+       server:
+          encrypt.enabled: false #config 암호화 필요하면 true
+          native:
+              searchLocations: file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-emaillist,
+                               file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-storage,
+                               file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-gallery,
+                               file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-guestbook,
+                               file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-gateway-server
+logging:
+   pattern:
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   level:
+      root: INFO
