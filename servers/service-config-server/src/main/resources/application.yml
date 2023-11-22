@@ -10,11 +10,11 @@ server:
    port: 7777
 
 # encrypt.enabled: false면 주석처리
-#encrypt:
-#   key-store:
-#      alias: selfsigned
-#      location: classpath:keystore.jks
-#      password: password
+encrypt:
+   key-store:
+      alias: selfsigned
+      location: classpath:keystore.jks
+      password: spawn842912!
     
     
 ---
@@ -57,7 +57,7 @@ spring:
    cloud:
      config:
        server:
-          encrypt.enabled: false #config 암호화 필요하면 true
+          encrypt.enabled: true #config 암호화 필요하면 true
           native:
               searchLocations: file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-emaillist,
                                file:///C:/Dev/sts-workspace/msa-practice-config-repo/service-storage,
